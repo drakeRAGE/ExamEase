@@ -45,7 +45,6 @@ exports.register = async (req, res, next) => {
 // Login user => POST /api/auth/login        => Public
 exports.login = async (req, res, next) => {
   try {
-    console.log("Logging");
     const { email, password } = req.body;
 
     // Checking for user
