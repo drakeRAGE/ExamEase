@@ -12,7 +12,7 @@ const Register = () => {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  
+
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -28,45 +28,45 @@ const Register = () => {
       setError('All fields are required');
       return false;
     }
-    
+
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
       return false;
     }
-    
+
     if (formData.password.length < 6) {
       setError('Password must be at least 6 characters');
       return false;
     }
-    
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       setError('Please enter a valid email address');
       return false;
     }
-    
+
     return true;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
-    
+
     try {
       setLoading(true);
       setError('');
-      
+
       const { confirmPassword, ...registerData } = formData;
       const response = await registerUser(registerData);
-      
+
       // Login the user with the returned token
       login(response.token, response.user);
-      
+
       navigate('/dashboard');
     } catch (err) {
       setError(
-        err.response?.data?.message || 
+        err.response?.data?.message ||
         'Registration failed. Please try again.'
       );
     } finally {
@@ -75,30 +75,30 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Create your account
+        <h2 className="text-center text-3xl font-extrabold text-white">
+          <span className="bg-gradient-to-r from-purple-400 to-indigo-400 text-transparent bg-clip-text">Create</span> your account
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
+        <p className="mt-2 text-center text-sm text-gray-400">
           Or{' '}
-          <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500">
+          <Link to="/login" className="font-medium text-indigo-400 hover:text-indigo-300 transition-colors">
             sign in to your account
           </Link>
         </p>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="card">
           {error && (
-            <div className="mb-4 bg-red-50 border-l-4 border-red-500 p-4 text-red-700">
+            <div className="mb-4 bg-red-900/30 border-l-4 border-red-500 p-4 text-red-200">
               <p>{error}</p>
             </div>
           )}
-          
+
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="name" className="block text-sm font-medium text-gray-300">
                 Full Name
               </label>
               <div className="mt-1">
@@ -116,7 +116,7 @@ const Register = () => {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-300">
                 Email address
               </label>
               <div className="mt-1">
@@ -134,7 +134,7 @@ const Register = () => {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-300">
                 Password
               </label>
               <div className="mt-1">
@@ -152,7 +152,7 @@ const Register = () => {
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-300">
                 Confirm Password
               </label>
               <div className="mt-1">
@@ -177,11 +177,8 @@ const Register = () => {
               >
                 {loading ? (
                   <span className="flex items-center">
-                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Registering...
+                    <FaSpinner className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" />
+                    Registering in...
                   </span>
                 ) : 'Register'}
               </button>

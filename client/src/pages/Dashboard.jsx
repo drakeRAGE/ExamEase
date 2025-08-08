@@ -8,7 +8,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [questionCount, setQuestionCount] = useState(10);
-  
+
   const navigate = useNavigate();
   const { user } = useAuth();
   const { startExam } = useExam();
@@ -17,9 +17,9 @@ const Dashboard = () => {
     try {
       setLoading(true);
       setError('');
-      
+
       const response = await fetchQuestions(questionCount);
-      
+
       if (response.success && response.data.length > 0) {
         startExam(response.data);
         navigate('/exam');
@@ -28,7 +28,7 @@ const Dashboard = () => {
       }
     } catch (err) {
       setError(
-        err.response?.data?.message || 
+        err.response?.data?.message ||
         'Failed to fetch questions. Please try again.'
       );
     } finally {
@@ -40,19 +40,21 @@ const Dashboard = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-3xl mx-auto">
         <div className="card mb-8">
-          <h1 className="text-2xl font-bold mb-2">Welcome, {user?.name}!</h1>
-          <p className="text-gray-600 mb-6">
+          <h1 className="text-2xl font-bold mb-2 text-white">
+            Welcome, <span className="bg-gradient-to-r from-purple-400 to-indigo-400 text-transparent bg-clip-text">{user?.name}!</span>
+          </h1>
+          <p className="text-gray-300 mb-6">
             You're ready to take your exam. Once you start, you'll have 30 minutes to complete it.
           </p>
-          
+
           {error && (
-            <div className="mb-4 bg-red-50 border-l-4 border-red-500 p-4 text-red-700">
+            <div className="mb-4 bg-red-900/30 border-l-4 border-red-500 p-4 text-red-200">
               <p>{error}</p>
             </div>
           )}
-          
+
           <div className="mb-6">
-            <label htmlFor="questionCount" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="questionCount" className="block text-sm font-medium text-gray-300 mb-1">
               Number of Questions
             </label>
             <select
@@ -68,10 +70,10 @@ const Dashboard = () => {
               <option value="20">20 Questions</option>
             </select>
           </div>
-          
-          <div className="bg-gray-50 p-4 rounded-md mb-6">
-            <h3 className="font-semibold mb-2">Exam Instructions:</h3>
-            <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
+
+          <div className="bg-indigo-900/30 p-4 rounded-md mb-6 border border-indigo-800/50">
+            <h3 className="font-semibold mb-2 text-indigo-300">Exam Instructions:</h3>
+            <ul className="list-disc pl-5 space-y-1 text-sm text-gray-300">
               <li>You will have 30 minutes to complete the exam.</li>
               <li>Each question has only one correct answer.</li>
               <li>You can navigate between questions using the navigation buttons.</li>
@@ -80,7 +82,7 @@ const Dashboard = () => {
               <li>You cannot pause the exam once started.</li>
             </ul>
           </div>
-          
+
           <button
             onClick={handleStartExam}
             disabled={loading}
