@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerUser } from '../services/api';
 import { useAuth } from '../hooks/useAuth';
+import { FaSpinner } from 'react-icons/fa';
 
 const Register = () => {
   const [formData, setFormData] = useState({
