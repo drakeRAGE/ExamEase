@@ -23,12 +23,7 @@ const app = express();
 app.use(express.json());
 
 // Enable CORS with specific origin
-app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://examease-dragbos.onrender.com'] 
-    : 'http://localhost:5173',
-  credentials: true
-}));
+app.use(cors());
 
 // Set security headers
 app.use(helmet());
@@ -42,15 +37,11 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/api/auth', authRoutes);
 app.use('/api/exam', examRoutes);
 
-// Serve static assets in production
-if (process.env.NODE_ENV === 'production') {
-  // Set static folder
-  app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'));
-  });
-}
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'));
+});
 
 // Error handler middleware
 app.use(errorHandler);
