@@ -124,9 +124,7 @@ A comprehensive, full-stack web application designed to streamline the process o
 4. **Review Results** immediately after completion
 
 ### For Administrators
-1. **Manage Questions** through the admin panel
-2. **Monitor Performance** with detailed analytics
-3. **Export Results** for further analysis
+1. **Manage Questions** By adding meaningful questions in DB
 
 ## 🏗️ Project Structure
 
