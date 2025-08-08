@@ -1,14 +1,10 @@
-<img width="1725" height="897" alt="image" src="https://github.com/user-attachments/assets/321dba90-9a29-4290-adca-2b852808e399" />
-
-
-          
 # ExamEase - Online Examination Platform
 
 A comprehensive, full-stack web application designed to streamline the process of conducting online examinations. Built with modern web technologies and featuring a sleek, dark-themed interface.
 
 ## 🚀 Live Demo
 
-[https://examease-x3uz.onrender.com/api](https://examease-x3uz.onrender.com/api)
+[https://examease-x3uz.onrender.com](https://examease-x3uz.onrender.com)
 
 ## ✨ Features
 
