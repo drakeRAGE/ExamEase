@@ -79,10 +79,7 @@ A comprehensive, full-stack web application designed to streamline the process o
    ```
 
 4. **Database Setup**
-   ```bash
-   cd server
-   npm run seed
-   ```
+   Add MONGO_URI variable in the .env file.
 
 5. **Start Development Servers**
    ```bash
@@ -132,22 +129,26 @@ A comprehensive, full-stack web application designed to streamline the process o
 ExamEase/
 ├── client/                 # React frontend
 │   ├── src/
-│   │   ├── components/     # Reusable UI components
+│   │   ├── components/    # Reusable UI components
 │   │   ├── pages/         # Page components
 │   │   ├── context/       # React context providers
 │   │   ├── hooks/         # Custom React hooks
+│   │   ├── routes/        # Protected routes
 │   │   ├── services/      # API service functions
 │   │   └── utils/         # Utility functions
 │   ├── public/            # Static assets
 │   └── package.json
 ├── server/                # Express backend
+│   ├── config/            # Database connection
 │   ├── controllers/       # Route controllers
-│   ├── models/           # MongoDB models
-│   ├── routes/           # API routes
-│   ├── middleware/       # Custom middleware
-│   ├── validators/       # Input validation
+│   ├── data/              # To add dummy questions to DB
+│   ├── models/            # MongoDB models
+│   ├── routes/            # API routes
+│   ├── middleware/        # Custom middleware
+│   ├── validators/        # Input validation
+│   ├── utils/             # To handle error responses
 │   └── package.json
-└── package.json          # Root package.json
+└── package.json           # Root package.json
 ```
 
 ## 📱 Screenshots
@@ -179,6 +180,16 @@ ExamEase/
 - `POST /api/exam/submit` - Submit exam answers
 - `GET /api/exam/result/:id` - Get exam results
 
+## API Testing
+You can use the provided Postman collection to test the APIs.
+
+- File: [`postman/ExamEaseAPIs.json`](postman/ExamEaseAPIs.json)
+- Import this file into Postman:
+  1. Open Postman
+  2. Click `Import`
+  3. Select the `.json` file
+  4. Set the required environment variables (if any)
+
 ## 🚀 Available Scripts
 
 ### Root Level
@@ -190,7 +201,6 @@ ExamEase/
 ### Client
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
-- `npm run preview` - Preview production build
 
 ### Server
 - `npm start` - Start production server
