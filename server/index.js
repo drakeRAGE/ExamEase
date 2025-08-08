@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const path = require('path'); // Add this
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/error');
 
@@ -21,8 +22,13 @@ const app = express();
 // Body parser
 app.use(express.json());
 
-// Enable CORS
-app.use(cors());
+// Enable CORS with specific origin
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://examease-dragbos.onrender.com'] 
+    : 'http://localhost:5173',
+  credentials: true
+}));
 
 // Set security headers
 app.use(helmet());
@@ -35,6 +41,16 @@ if (process.env.NODE_ENV === 'development') {
 // Mount routers
 app.use('/api/auth', authRoutes);
 app.use('/api/exam', examRoutes);
+
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static(path.join(__dirname, '../client/dist')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'));
+  });
+}
 
 // Error handler middleware
 app.use(errorHandler);

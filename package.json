@@ -1,0 +1,35 @@
+{
+  "name": "examease",
+  "version": "1.0.0",
+  "description": "ExamEase - Online Examination Platform",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "server": "nodemon server/index.js",
+    "client": "cd client && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install-server": "cd server && npm install",
+    "install-client": "cd client && npm install",
+    "install": "npm run install-server && npm run install-client",
+    "build-client": "cd client && npm run build",
+    "build": "npm run install && npm run build-client",
+    "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-client && npm run build-client"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "exam",
+    "education",
+    "assessment",
+    "mern"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

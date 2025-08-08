@@ -11,7 +11,6 @@ const Navbar = () => {
         <Link to="/" className="text-2xl font-bold flex items-center group">
           <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 text-transparent bg-clip-text group-hover:from-indigo-300 group-hover:to-pink-300 transition-all duration-300">Exam</span>
           <span className="text-white group-hover:text-gray-200 transition-colors duration-300">Ease</span>
-          <div className="h-2 w-2 rounded-full bg-indigo-400 ml-1.5 animate-pulse"></div>
         </Link>
 
         <div className="flex items-center space-x-6">
