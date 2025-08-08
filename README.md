@@ -1,4 +1,4 @@
-
+<img width="1725" height="897" alt="image" src="https://github.com/user-attachments/assets/321dba90-9a29-4290-adca-2b852808e399" />
 
 
           
@@ -8,7 +8,7 @@ A comprehensive, full-stack web application designed to streamline the process o
 
 ## 🚀 Live Demo
 
-[https://examease.onrender.com](https://examease-x3uz.onrender.com/api)
+[https://examease-x3uz.onrender.com/api](https://examease-x3uz.onrender.com/api)
 
 ## ✨ Features
 
